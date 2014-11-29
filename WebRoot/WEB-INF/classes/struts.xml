@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package name="football" extends="struts-default">
+
+		<action name="Register" class="com.udcode.business.AccountViewAction"
+			method="register">
+			<result name="success"  type="redirect">/Config</result>
+			<result name="error">register.html</result>
+		</action>
+		
+		<action name="Login" class="com.udcode.business.AccountViewAction"
+			method="login">
+			<result name="success" type="redirectAction">/Config</result>
+			<result name="error">register.html</result>
+		</action>
+		
+		<action name="Config" class="com.udcode.business.ConfigViewAction"
+		method="showConfigPage">
+		<result name="success" type="redirect">/main/config.jsp</result>
+			<result name="error">register.html</result>
+		</action>
+	</package>
+
+	<package name="default" extends="struts-default">
+		<default-action-ref name="notFound" />
+		<action name="notFound">
+			<result>/error/404.html</result>
+		</action>
+	</package>
+</struts>
