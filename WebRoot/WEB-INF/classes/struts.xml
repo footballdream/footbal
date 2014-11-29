@@ -8,13 +8,13 @@
 
 		<action name="Register" class="com.udcode.business.AccountViewAction"
 			method="register">
-			<result name="success"  type="redirect">/Config</result>
+			<result name="success"  type="chain">Config</result>
 			<result name="error">register.html</result>
 		</action>
 		
 		<action name="Login" class="com.udcode.business.AccountViewAction"
 			method="login">
-			<result name="success" type="redirectAction">/Config</result>
+			<result name="success" type="chain">Config</result>
 			<result name="error">register.html</result>
 		</action>
 		

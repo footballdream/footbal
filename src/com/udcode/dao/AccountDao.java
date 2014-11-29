@@ -22,14 +22,29 @@ public class AccountDao {
 
 		List<Account> accounts =  query.list();
 		
-		if(accounts.size()==1){
+		if(accounts.size()==1 && accounts.get(0).getEmail().equals(email)){
 			return true;
 		}
 		
 		return false;
 	}
 	
-	public void register(String email, String password) throws Exception{
+	public User getUserByEMail(String email){
+
+		Session session = ConnFactory.getInstance().getSession();
+		String hql = "from User as user where user.account.email=:email";
+		Query query = session.createQuery(hql);
+		query.setString("email", email);
+		List<User> user =  query.list();
+		
+		if(user.size()==1){
+			return user.get(0);
+		}
+		
+		return null;
+	}
+	
+	public User register(String email, String password) throws Exception{
 
 		Session session = ConnFactory.getInstance().getSession();
 
@@ -46,5 +61,6 @@ public class AccountDao {
 		session.save(user);
 		tran.commit();
 
+		return user;
 	}
 }

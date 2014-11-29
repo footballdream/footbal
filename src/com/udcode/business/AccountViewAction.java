@@ -2,8 +2,10 @@ package com.udcode.business;
 
 
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.udcode.dao.AccountDao;
+import com.udcode.entity.User;
 
 public class AccountViewAction extends ActionSupport{
 
@@ -39,10 +41,13 @@ public class AccountViewAction extends ActionSupport{
 
 	public String register() throws Exception {
 
-		AccountDao view = new AccountDao();
+		AccountDao accountDao = new AccountDao();
 		try {
-			view.register(email, password);
+			User user = accountDao.register(email, password);
 
+			ActionContext actionContext = ActionContext.getContext();
+			actionContext.getSession().put(user.getAccount().getEmail(), user);
+			
 		} catch (Exception e) {
 			return ERROR;
 		}
@@ -51,10 +56,10 @@ public class AccountViewAction extends ActionSupport{
 	 
 	public String login() throws Exception {
 
-		AccountDao view = new AccountDao();
+		AccountDao accountDao = new AccountDao();
 		boolean flg = false;
 		try {
-			flg = view.login(email, password);
+			flg = accountDao.login(email, password);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,6 +67,9 @@ public class AccountViewAction extends ActionSupport{
 		}
 		
 		if(flg){
+			User user = accountDao.getUserByEMail(email);
+			ActionContext actionContext = ActionContext.getContext();
+			actionContext.getSession().put(user.getAccount().getEmail(), user);
 			return SUCCESS;
 		}
 		return ERROR;

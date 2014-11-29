@@ -11,7 +11,7 @@
 <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 <property name="myeclipse.connection.profile">football</property>
 <property name="hibernate.show_sql">true</property>  
-<property name="hibernate.hbm2ddl.auto">create</property>  
+<property name="hibernate.hbm2ddl.auto">update</property>  
 <mapping class="com.udcode.entity.Team"/>
 <mapping class="com.udcode.entity.Match"/>
 <mapping class="com.udcode.entity.Field"/>
