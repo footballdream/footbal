@@ -46,7 +46,7 @@ public class AccountViewAction extends ActionSupport{
 			User user = accountDao.register(email, password);
 
 			ActionContext actionContext = ActionContext.getContext();
-			actionContext.getSession().put(user.getAccount().getEmail(), user);
+			actionContext.getSession().put("user", user);
 			
 		} catch (Exception e) {
 			return ERROR;
@@ -69,7 +69,7 @@ public class AccountViewAction extends ActionSupport{
 		if(flg){
 			User user = accountDao.getUserByEMail(email);
 			ActionContext actionContext = ActionContext.getContext();
-			actionContext.getSession().put(user.getAccount().getEmail(), user);
+			actionContext.getSession().put("user", user);
 			return SUCCESS;
 		}
 		return ERROR;
