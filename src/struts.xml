@@ -24,6 +24,17 @@
 			<result name="error">register.html</result>
 		</action>
 	</package>
+	<package name="user-authority"  extends="struts-default">
+		<interceptors>
+			<!-- 用户是否登录拦截器 -->
+			<interceptor class="com.udcode.interceptor.AuthorityInterceptor" name="authority"/>
+			<interceptor class="com.udcode.interceptor.AuthorityTeamInterceptor" name="authorityTeam"/> 
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="authority"/>
+			</interceptor-stack>
+		</interceptors>
+	</package>
 
 	<package name="default" extends="struts-default">
 		<default-action-ref name="notFound" />
