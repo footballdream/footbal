@@ -4,6 +4,9 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 
+import org.apache.struts2.ServletActionContext;
+
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,9 +20,10 @@ public class ConfigViewAction extends ActionSupport{
 		String email = (String) request.get("email");
 		String password = (String) request.get("password");
 		Cookie namecookie = new Cookie("email",email);     
-		Cookie passwordcookie = new Cookie("password",password);     
-		Cookie optioncookie = new Cookie("option","1"); 
-		
+		namecookie.setMaxAge(60*60*7);
+		ServletActionContext.getResponse().addCookie(namecookie);
 		return SUCCESS;
 	}
+
+
 }

@@ -6,22 +6,32 @@
 	<constant name="struts.devMode" value="true" />
 	<package name="football" extends="struts-default">
 
+		<interceptors>
+			<!-- 定义权限控制拦截器 -->
+
+			<interceptor name="authority"
+				class="com.udcode.authority.AuthorizationInterceptor" />
+		</interceptors>
+
 		<action name="Register" class="com.udcode.business.AccountViewAction"
 			method="register">
-			<result name="success"  type="chain">Config</result>
-			<result name="error">register.html</result>
-		</action>
-		
-		<action name="Login" class="com.udcode.business.AccountViewAction"
-			method="login">
 			<result name="success" type="chain">Config</result>
 			<result name="error">register.html</result>
 		</action>
-		
+
+		<action name="Login" class="com.udcode.business.AccountViewAction"
+			method="login">
+			<result name="success" type="chain">Config</result>
+			<result name="error">index.html</result>
+		</action>
+
 		<action name="Config" class="com.udcode.business.ConfigViewAction"
-		method="showConfigPage">
-		<result name="success" type="redirect">/main/config.jsp</result>
-			<result name="error">register.html</result>
+			method="showConfigPage">
+			<result name="success" type="redirect">/main/config.jsp</result>
+			<result name="error">index.html</result>
+			<interceptor-ref name="defaultStack"/>
+
+			<interceptor-ref name="authority"/>
 		</action>
 	</package>
 
