@@ -17,6 +17,7 @@
 <mapping class="com.udcode.entity.Field"/>
 <mapping class="com.udcode.entity.Account"/>
 <mapping class="com.udcode.entity.User"/>
+<mapping class="com.udcode.entity.TeamRights"/>
            </session-factory>
 </hibernate-configuration>
 

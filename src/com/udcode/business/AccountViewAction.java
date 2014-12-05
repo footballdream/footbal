@@ -2,6 +2,11 @@ package com.udcode.business;
 
 
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.udcode.dao.AccountDao;
@@ -67,11 +72,42 @@ public class AccountViewAction extends ActionSupport{
 		}
 		
 		if(flg){
+	
 			User user = accountDao.getUserByEMail(email);
+			String rememberCookie = ServletActionContext.getRequest().getParameter("remember_cookie");
+			if("rememberme".equals(rememberCookie)){
+				setCookie(user);
+			}
+		
 			ActionContext actionContext = ActionContext.getContext();
 			actionContext.getSession().put("user", user);
 			return SUCCESS;
 		}
 		return ERROR;
+	}
+	
+	private void setCookie(User user){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		Cookie[] cookies = request.getCookies();
+	
+		if(needAddCookie(cookies)){
+			Cookie namecookie = new Cookie("uni_id",email+","+user.getAccount().getPassword());     
+			namecookie.setMaxAge(60*60*7);
+			ServletActionContext.getResponse().addCookie(namecookie);
+		}
+
+	}
+	
+	private boolean needAddCookie(Cookie[] cookies){
+		
+		if(cookies==null)return true;
+		
+		for (Cookie cookie : cookies) {
+			if ("uni_id".equals(cookie.getName())) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

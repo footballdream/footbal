@@ -5,18 +5,17 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+ 	<filter>
+      <filter-name>pageFilter</filter-name>
+      <filter-class>
+         com.udcode.filter.AuthorizationFilter
+      </filter-class>
+   </filter>
 
- <!--  <servlet>
-  <display-name>Register</display-name>
-  <servlet-name>Register</servlet-name>
-  <servlet-class>com.udcode.servlet.RegisterServlet</servlet-class>  
- </servlet>
- <servlet-mapping>
-  <servlet-name>Register</servlet-name>
-  <url-pattern>/Register</url-pattern>
- </servlet-mapping>
--->
- 
+   <filter-mapping>
+      <filter-name>pageFilter</filter-name>
+      <url-pattern>/main/*</url-pattern>
+   </filter-mapping> 
  
     <filter>
       <filter-name>struts2</filter-name>

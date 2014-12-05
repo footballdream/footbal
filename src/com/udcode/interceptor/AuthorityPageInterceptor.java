@@ -1,4 +1,4 @@
-package com.udcode.authority;
+package com.udcode.interceptor;
 
 import java.util.Map;
 
@@ -11,7 +11,8 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.udcode.entity.User;
 
-public class AuthorizationInterceptor extends AbstractInterceptor {
+public class AuthorityPageInterceptor extends AbstractInterceptor {
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
@@ -22,11 +23,6 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Cookie[] cookies = request.getCookies();
 
-		for(Cookie cookie:cookies){
-			String name = cookie.getName();
-		}
-		
 		return invocation.invoke();
 	}
-
 }

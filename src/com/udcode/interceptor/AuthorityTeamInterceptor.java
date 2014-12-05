@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.udcode.entity.User;
 
 public class AuthorityTeamInterceptor extends AbstractInterceptor{
 
@@ -13,8 +14,8 @@ public class AuthorityTeamInterceptor extends AbstractInterceptor{
 	public String intercept(ActionInvocation invocation) throws Exception {
 		ActionContext ctx = invocation.getInvocationContext();
 		Map session = ctx.getSession();
-		String username = (String)session.get("username");
-		if (username != null){
+		User user = (User)session.get("user");
+		if (user != null){
 			System.out.println("user already login!");
 			return invocation.invoke();
 		}

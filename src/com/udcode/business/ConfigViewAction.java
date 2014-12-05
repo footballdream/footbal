@@ -18,10 +18,7 @@ public class ConfigViewAction extends ActionSupport{
 		ActionContext actionContext = ActionContext.getContext();
 		Map request = (Map)ActionContext.getContext().get("request");
 		String email = (String) request.get("email");
-		String password = (String) request.get("password");
-		Cookie namecookie = new Cookie("email",email);     
-		namecookie.setMaxAge(60*60*7);
-		ServletActionContext.getResponse().addCookie(namecookie);
+	
 		return SUCCESS;
 	}
 

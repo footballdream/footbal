@@ -8,9 +8,14 @@
 
 		<interceptors>
 			<!-- 定义权限控制拦截器 -->
-
-			<interceptor name="authority"
-				class="com.udcode.authority.AuthorizationInterceptor" />
+			<interceptor name="actionAuthority"
+				class="com.udcode.interceptor.AuthorityInterceptor" />
+			<interceptor name="teamAuthority"
+				class="com.udcode.interceptor.AuthorityTeamInterceptor" />
+			<interceptor-stack name="authorityStack">
+				<interceptor-ref name="actionAuthority" />
+				<interceptor-ref name="teamAuthority" />
+			</interceptor-stack>
 		</interceptors>
 
 		<action name="Register" class="com.udcode.business.AccountViewAction"
@@ -29,21 +34,9 @@
 			method="showConfigPage">
 			<result name="success" type="redirect">/main/config.jsp</result>
 			<result name="error">index.html</result>
-			<interceptor-ref name="defaultStack"/>
-
-			<interceptor-ref name="authority"/>
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="authorityStack" />
 		</action>
-	</package>
-	<package name="user-authority"  extends="struts-default">
-		<interceptors>
-			<!-- 用户是否登录拦截器 -->
-			<interceptor class="com.udcode.interceptor.AuthorityInterceptor" name="authority"/>
-			<interceptor class="com.udcode.interceptor.AuthorityTeamInterceptor" name="authorityTeam"/> 
-			<interceptor-stack name="mydefault">
-				<interceptor-ref name="defaultStack"/>
-				<interceptor-ref name="authority"/>
-			</interceptor-stack>
-		</interceptors>
 	</package>
 
 	<package name="default" extends="struts-default">
