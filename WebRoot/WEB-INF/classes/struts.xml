@@ -18,19 +18,19 @@
 			</interceptor-stack>
 		</interceptors>
 
-		<action name="Register" class="com.udcode.business.AccountViewAction"
+		<action name="Register" class="com.udcode.view.AccountViewAction"
 			method="register">
 			<result name="success" type="chain">Config</result>
 			<result name="error">register.html</result>
 		</action>
 
-		<action name="Login" class="com.udcode.business.AccountViewAction"
+		<action name="Login" class="com.udcode.view.AccountViewAction"
 			method="login">
 			<result name="success" type="chain">Config</result>
 			<result name="error">index.html</result>
 		</action>
 
-		<action name="Config" class="com.udcode.business.ConfigViewAction"
+		<action name="Config" class="com.udcode.view.ConfigViewAction"
 			method="showConfigPage">
 			<result name="success" type="redirect">/main/config.jsp</result>
 			<result name="error">index.html</result>
