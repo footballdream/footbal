@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.udcode.connfactory.ConnFactory;
-import com.udcode.entity.Account;
 import com.udcode.entity.Match;
 import com.udcode.entity.Team;
+import com.udcode.entity.User;
 /**
  * Team DAO to manage the team table.
  * @author jieyn
@@ -30,11 +30,20 @@ public class TeamDao {
 		return team;
 	}
 	
-	public Team getTeam(Account account) {
+	public List<Team> getAllTeam() {
+		Session session = ConnFactory.getInstance().getSession();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM t_team");
+		Query query = session.createSQLQuery(sql.toString()).addEntity(Team.class);
+		List<Team> list = query.list();
+		return list;
+	}
+	
+	public Team getTeam(User account) {
         Session session = ConnFactory.getInstance().getSession();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM t_match AS  ");
-		sql.append(" WHERE   team.account_id = ? ");
+		sql.append("SELECT * FROM t_team AS team");
+		sql.append(" WHERE   team.user_id = ? ");
 		Query query = session.createSQLQuery(sql.toString()).addEntity(Team.class);
 		query.setLong(0, account.getId());
 		List<Team> list = query.list();

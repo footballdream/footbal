@@ -25,7 +25,7 @@ public class Team {
 
 	private Field homeField;
 	
-	private Account account;
+	private User user;
 	
 	@ManyToOne(cascade={CascadeType.ALL},fetch=FetchType.LAZY)  
 	public Field getHomeField() {
@@ -42,18 +42,17 @@ public class Team {
 		return id;
 	}
 
-	@OneToOne(fetch=FetchType.LAZY)
-	public Account getAccount() {
-		return account;
-	}
-
-	
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Column(name="name",length=50)
