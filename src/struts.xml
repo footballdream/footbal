@@ -36,15 +36,18 @@
 			<result name="error">index.html</result>
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="authorityStack" />
-		</action>
-		
+		</action>	
 		<action name="getTeamName" class="com.udcode.view.ConfigViewAction"
 			method="getTeamName">
 			
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="authorityStack" />
+		</action>		
+		<action name="CreateTeam" class="com.udcode.business.TeamViewAction"
+		method="createTeam">
+		    <result name="success" type="redirect">/main/config.jsp</result>
+			<result name="error">register.html</result>
 		</action>
-		
 	</package>
 
 	<package name="default" extends="struts-default">

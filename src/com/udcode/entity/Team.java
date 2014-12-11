@@ -8,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -24,7 +24,9 @@ public class Team {
 	private String createTime;
 
 	private Field homeField;
-
+	
+	private Account account;
+	
 	@ManyToOne(cascade={CascadeType.ALL},fetch=FetchType.LAZY)  
 	public Field getHomeField() {
 		return homeField;
@@ -38,6 +40,16 @@ public class Team {
 	@GeneratedValue
 	public int getId() {
 		return id;
+	}
+
+	@OneToOne(fetch=FetchType.LAZY)
+	public Account getAccount() {
+		return account;
+	}
+
+	
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public void setId(int id) {
