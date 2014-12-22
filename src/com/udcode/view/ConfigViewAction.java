@@ -22,5 +22,14 @@ public class ConfigViewAction extends ActionSupport{
 		return SUCCESS;
 	}
 
+	public String getTeamName() throws Exception{
+		String parm1 = ServletActionContext.getRequest().getParameter("parm1");
+		String parm2 = ServletActionContext.getRequest().getParameter("parm2");
+		
+		System.out.println(parm1+"/"+parm2);
+		
+		ServletActionContext.getResponse().getWriter().print("test");
+		return null;
+	}
 
 }

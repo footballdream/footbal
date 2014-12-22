@@ -37,6 +37,14 @@
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="authorityStack" />
 		</action>
+		
+		<action name="getTeamName" class="com.udcode.view.ConfigViewAction"
+			method="getTeamName">
+			
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="authorityStack" />
+		</action>
+		
 	</package>
 
 	<package name="default" extends="struts-default">

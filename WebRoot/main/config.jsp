@@ -21,6 +21,18 @@
 			$("#top_nav").append(response);
 
 		});*/
+		
+		 $.ajax({
+		  	url:"getTeamName",
+		  	dataType:"html",
+            data:{parm1:'aaa',
+                       parm2:222},
+		  	success:function(strValue){
+		  		
+		  	 	$("#teamname_text").val(strValue);
+		  	}
+		 
+		 });
 	}
 </script>
 	</head>
@@ -35,7 +47,7 @@
 					队名
 				</label>
 
-				<input type="text" name="fname" />
+				<input type="text"  id="teamname_text" />
 				<br>
 			</form>
 		</div>

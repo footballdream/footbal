@@ -109,7 +109,7 @@ public class AccountViewAction extends ActionSupport {
 			return true;
 
 		for (Cookie cookie : cookies) {
-			if ("uni_id".equals(cookie.getName())) {
+			if (!"uni_id".equals(cookie.getName())) {
 				return true;
 			}
 		}
